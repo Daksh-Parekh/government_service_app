@@ -28,43 +28,70 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Padding(
           padding: EdgeInsets.all(16),
-          child: hWatch.isConnected
-              ? Center(
+          // child: hWatch.isConnected
+          child: GridView.builder(
+            itemCount: hRead.allOptions.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, childAspectRatio: 0.9),
+            itemBuilder: (context, index) {
+              return InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, '/web_view',
+                      arguments: hRead.allOptions[index]);
+                },
+                child: Container(
+                  height: 100,
+                  margin: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black45,
+                        blurRadius: 6,
+                        offset: Offset(3, 3),
+                      ),
+                    ],
+                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
-                        Icons.wifi,
-                        size: 200,
+                        hRead.allOptions[index].icons,
+                        size: 50,
+                      ),
+                      SizedBox(
+                        height: 10,
                       ),
                       Text(
-                        "Connected",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25,
-                        ),
+                        '${hRead.allOptions[index].title}',
+                        style: TextStyle(fontSize: 16),
                       ),
                     ],
                   ),
-                )
-              : Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.wifi_off,
-                        size: 200,
-                      ),
-                      Text(
-                        "Not Connected",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25,
-                        ),
-                      ),
-                    ],
-                  ),
-                )),
+                ),
+              );
+            },
+          )
+          // : Center(
+          //     child: Column(
+          //       mainAxisAlignment: MainAxisAlignment.center,
+          //       children: [
+          //         Icon(
+          //           Icons.wifi_off,
+          //           size: 200,
+          //         ),
+          //         Text(
+          //           "Not Connected",
+          //           style: TextStyle(
+          //             fontWeight: FontWeight.bold,
+          //             fontSize: 25,
+          //           ),
+          //         ),
+          //       ],
+          //     ),
+          //   )),
+          ),
     );
   }
 }

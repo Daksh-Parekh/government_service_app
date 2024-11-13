@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:government_service_app/screens/home_screen/provider/home_provider.dart';
 import 'package:government_service_app/screens/home_screen/views/home_page.dart';
+import 'package:government_service_app/screens/web_view_page/views/web_view.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         routes: {
           '/': (context) => HomePage(),
+          '/web_view': (context) => WebView(),
         },
       ),
     );
