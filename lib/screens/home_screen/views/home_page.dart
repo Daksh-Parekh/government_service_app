@@ -25,6 +25,24 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Home Page"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              hRead.changeTheme();
+            },
+            icon: hWatch.isTheme
+                ? Icon(Icons.dark_mode_rounded)
+                : Icon(Icons.light_mode_rounded),
+            // icon: Icon(Icons.sunny),
+          ),
+          //By use of switch theme change
+          // Switch(
+          //   value: hWatch.isTheme,
+          //   onChanged: (value) {
+          //     hRead.changeTheme();
+          //   },
+          // )
+        ],
       ),
       body: Padding(
           padding: EdgeInsets.all(16),

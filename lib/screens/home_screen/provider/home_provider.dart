@@ -1,6 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:government_service_app/screens/home_screen/model/service_model.dart';
+import 'package:government_service_app/utils/helper/shr_helper.dart';
 
 class HomeProvider with ChangeNotifier {
   bool isConnected = false;
@@ -52,6 +53,26 @@ class HomeProvider with ChangeNotifier {
 
   void changeProgressValue(double value) {
     progressValue = value;
+    notifyListeners();
+  }
+
+  bool isTheme = false;
+  ThemeMode? mode;
+  void changeTheme() {
+    isTheme = !isTheme;
+    ShrHelper helps = ShrHelper();
+
+    // mode = isTheme ? ThemeMode.light : ThemeMode.dark;
+    helps.saveTheme(isTheme);
+    notifyListeners();
+  }
+
+  void getThemes() async {
+    ShrHelper hepls = ShrHelper();
+
+    isTheme = await hepls.getTheme() ?? false;
+    //  isTheme= hepls.getTheme();
+    // isTheme=ShrHelper.helper.getTheme();
     notifyListeners();
   }
 }
